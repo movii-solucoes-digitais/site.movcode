@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="movii - Desenvolvimento de sistemas, automação e sites sob medida em Ribeirão Preto.">
+    <meta name="keywords" content="Software, Ribeirão Preto, Desenvolvimento Web, Automação, Movii">
+
+    <title>movii | Soluções Digitais</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primaria: #3703B8; 
+            --destaque: #FE6603; 
+            --branco: #FFFFFF;
+            --escuro: #0D0524; 
+            --cinza-claro: #F4F5F7; 
+        }
+
+        html { scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+        body { color: var(--escuro); background-color: var(--branco); line-height: 1.6; }
+
+        section {
+            scroll-margin-top: 20px; /* Ajuste esse valor conforme a altura do seu header */
+        }
+
+        #inicio {
+            scroll-margin-top: 0 !important; /* Garante que o alvo seja o topo real */
+        }
+        
+        #sobre {
+            scroll-margin-top: 120px; 
+        }
+
+        /* ========================================= */
+        /* CONTAINER CENTRALIZADOR (RÉGUA GLOBAL) */
+        /* ========================================= */
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* HEADER E MENU */
+        header {
+            background-color: var(--branco); /* Começa sólido como você quer */
+            padding: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.5s ease; /* Tempo da transição da cor */
+        }
+
+        /* Esta classe entra em ação quando você scrollar */
+        header.scrolled {
+            /* background-color: rgba(255, 255, 255, 0.7); /* Fica transparente */
+            /* backdrop-filter: blur(10px); /* Dá o efeito de vidro fosco */
+            /* -webkit-backdrop-filter: blur(15px);
+            /* padding: 10px 0; /* Opcional: diminui um pouco a altura para dar um charme */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo { font-size: 28px; font-weight: 700; color: var(--primaria); text-decoration: none; z-index: 101; }
+        .logo span { color: var(--destaque); }
+
+        nav ul { display: flex; list-style: none; gap: 30px; }
+        nav ul li a { text-decoration: none; color: var(--escuro); font-weight: 500; font-size: 15px; transition: 0.3s; }
+        nav ul li a:hover { color: var(--destaque); }
+
+        /* CAIXA QUE ABRAÇA O INÍCIO E O SOBRE PARA O GRADIENTE DESCER ATÉ O FIM */
+        .top-wrapper {
+            background: radial-gradient(circle at 20% 30%, #4a09f0 0%, var(--primaria) 50%, #20026b 100%);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;   /* Evita que o borrão crie barra de rolagem lateral */
+        }
+
+        .top-wrapper::after {
+            content: ''; 
+            position: absolute; 
+            width: 500px; 
+            height: 500px; 
+            background: var(--destaque); /* Usa o laranja da sua variável */
+            filter: blur(150px);        /* Cria o efeito de luz difusa */
+            opacity: 0.2;               /* Deixa bem sutil para não brigar com o texto */
+            top: -100px;                /* Posiciona no canto superior */
+            right: -100px;              /* Posiciona no canto direito */
+            border-radius: 50%;         /* Deixa circular para o borrão ficar uniforme */
+            pointer-events: none;       /* Garante que o borrão não atrapalhe cliques em botões */
+            z-index: 0;                 /* Fica atrás do conteúdo */
+        }
+
+        /* HERO - FUNDO LISO SEM RUÍDO E ALINHADO NO CONTAINER */
+        .hero {
+            color: var(--branco);
+            padding: 0 0 90px; 
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+        }
+
+        .hero-image { flex: 1; display: flex; justify-content: flex-start; align-items: center; position: relative; z-index: 2; }
+        
+        .hero-image img { 
+            max-width: 100%; 
+            width: 100%; 
+            height: auto; 
+            display: block; 
+            margin: 10px 0; 
+        }
+        
+        .hero-text { flex: 1; text-align: left; position: relative; z-index: 2; }
+        .hero h1 { font-size: 48px; margin-bottom: 20px; font-weight: 700; line-height: 1.2; display: inline-block; }
+
+        .hero h1 .highlight { color: var(--destaque); }
+        
+        .cursor {
+            display: inline-block;
+            width: 4px;
+            height: 1em;
+            background-color: var(--destaque);
+            vertical-align: middle;
+            margin-left: 5px;
+            animation: piscar 0.8s infinite;
+        }
+
+        @keyframes piscar {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        .hero p { font-size: 18px; margin-bottom: 40px; max-width: 600px; color: #e2d8f8; }
+        
+        .btn-destaque {
+            background-color: var(--destaque); color: var(--branco); padding: 15px 32px; text-decoration: none;
+            border-radius: 8px; font-weight: 600; transition: 0.3s; display: inline-block; border: none; cursor: pointer; z-index: 3;
+            box-shadow: 0 10px 20px rgba(254, 102, 3, 0.3);
+        }
+        .btn-destaque:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(254, 102, 3, 0.5); }
+
+        /* ========================================= */
+        /* SOBRE NÓS - CARD BRANCO FLUTUANTE */
+        /* ========================================= */
+        
+        .sobre { 
+            display: flex; 
+            justify-content: center; 
+            margin-top: -80px; 
+            padding: 0 5% 90px 5%; 
+            position: relative; 
+            z-index: 10; 
+        }
+
+        .sobre-caixa {
+            background-color: var(--branco); 
+            border: 1px solid rgba(55, 3, 184, 0.05);
+            width: 100%;
+            max-width: 1100px;
+            border-radius: 24px; 
+            padding: 70px;
+            box-shadow: 0 40px 100px rgba(13, 5, 36, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+        }
+
+        .sobre-text { flex: 1; }
+        .sobre-text h2 { font-size: 40px; color: var(--escuro); margin-bottom: 20px; font-weight: 700; line-height: 1.2; }
+        .sobre-text p { font-size: 18px; color: #555555; margin-bottom: 30px; }
+
+        .btn-outline {
+            background-color: transparent; color: var(--primaria); border: 2px solid var(--primaria);
+            padding: 12px 28px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: 0.3s; display: inline-block;
+        }
+        .btn-outline:hover { background-color: var(--primaria); color: var(--branco); }
+
+        .sobre-visual {
+            flex: 1; background-color: var(--cinza-claro); border: 1px solid #E5E5E5; border-radius: 16px;
+            height: 300px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;
+        }
+        .sobre-visual svg { width: 60px; height: 60px; color: #ccc; }
+
+        /* ========================================= */
+        /* EFEITO VISUAL SOBRE NÓS (GRADIENTE + GRAIN)*/
+        /* ========================================= */
+
+        .modern-gradient-box {
+            position: relative;
+            width: 100%;
+            height: 100%; /* Herda os 300px que você já definiu no .sobre-visual */
+            border-radius: 16px;
+            overflow: hidden;
+            /* Um gradiente misturando as cores da sua marca */
+            background: linear-gradient(135deg, var(--primaria) 0%, #20026b 40%, var(--destaque) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        /* Esse é o truque mágico do ruído usando SVG inline */
+        .noise-overlay {
+            position: absolute;
+            top: 0; left: 0; 
+            width: 100%; height: 100%;
+            opacity: 0.15; /* Aqui você controla a força do granulado (0.10 a 0.30 é o ideal) */
+            pointer-events: none; /* Deixa o mouse passar direto por ele */
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Opcional: um texto ou símbolo bem minimalista no meio */
+        .gradient-text-overlay {
+            position: relative;
+            z-index: 2;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 4px;
+        }
+
+        /* SEÇÕES GERAIS */
+        section { padding: 90px 0; }
+        h2.section-title { color: var(--escuro); font-size: 36px; margin-bottom: 50px; }
+
+        /* ========================================= */
+        /* CARROSSEL INFINITO DOS SERVIÇOS */
+        /* ========================================= */
+        .marquee-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            padding: 30px 0 60px 0; /* 60px embaixo garante espaço para a sombra */
+            display: flex;
+        }
+
+        .marquee-wrapper::before,
+        .marquee-wrapper::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 80px;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .marquee-wrapper::before { left: 0; background: linear-gradient(to right, var(--branco), transparent); }
+        .marquee-wrapper::after { right: 0; background: linear-gradient(to left, var(--branco), transparent); }
+
+        .marquee-track {
+            display: flex;
+            gap: 30px;
+            width: max-content;
+            will-change: transform;
+        }
+
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+
+        .servico-card {
+            width: 320px; 
+            flex-shrink: 0; 
+            background: var(--branco);
+            border: 1px solid rgba(55, 3, 184, 0.1); 
+            padding: 50px 40px;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden; 
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.02);
+            cursor: grab;
+            user-select: none; /* Evita selecionar texto ao arrastar */
+        }
+
+        .servico-card:active {
+            cursor: grabbing;
+        }
+
+        /* Correção da linha superior */
+        .servico-card::before {
+            content: "";
+            position: absolute;
+            top: -2px; /* Deixe em 0 para alinhar com o início interno da borda */
+            left: 0;
+            width: 100%; /* Largura exata do card */
+            height: 7px;
+            background: linear-gradient(90deg, var(--primaria), var(--destaque));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+            border-radius: 20px 20px 0 0;
+            z-index: 1; /* Garante que fique acima da borda mas dentro do shape */
+        }
+
+        .servico-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(55, 3, 184, 0.08);
+            border-color: rgba(55, 3, 184, 0.2);
+        }
+
+        .servico-card:hover::before { 
+            transform: scaleX(1); 
+        }
+
+        .icon-box {
+            width: 60px; 
+            height: 60px;
+            background-color: var(--cinza-claro);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            color: var(--primaria);
+            transition: 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .servico-card:hover .icon-box {
+            background-color: var(--primaria);
+            color: var(--branco);
+            transform: rotate(-5deg);
+        }
+
+        .servico-card h3 { 
+            font-size: 22px; 
+            margin-bottom: 15px; 
+            color: var(--escuro); 
+            font-weight: 600;
+        }
+
+        .servico-card p { 
+            font-size: 15px; 
+            color: #666; 
+            line-height: 1.6; 
+        }
+        /* ========================================= */
+        /* PORTFÓLIO */
+        /* ========================================= */
+        #portfolio { background-color: var(--destaque); padding-top: 90px; padding-bottom: 90px; overflow: hidden; }
+        .portfolio-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+        .portfolio-header h2 { margin-bottom: 0; font-size: 40px; color: var(--branco); }
+
+        .btn-escuro { background-color: #1A1A1A; color: var(--branco); padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 500; font-size: 15px; transition: 0.3s; display: inline-flex; align-items: center; gap: 10px; border: none; cursor: pointer; }
+        .btn-escuro:hover { background-color: var(--branco); color: var(--escuro); }
+
+        /* GRADE EXPANDIDA MANUAL */
+        .cases-grid { 
+            display: flex; 
+            gap: 30px; 
+            overflow-x: auto; 
+            padding-top: 20px;
+            padding-bottom: 40px; 
+            scrollbar-width: none; 
+            scroll-behavior: smooth; 
+            
+            /* Alinhamento que bate com os 1100px centrais */
+            padding-left: max(5%, calc((100vw - 1100px) / 2));
+            padding-right: max(5%, calc((100vw - 1100px) / 2));
+        }
+        .cases-grid::-webkit-scrollbar { display: none; }
+
+        .case-card { 
+            flex: 0 0 calc(25% - 22.5px); 
+            min-width: 250px; 
+            background-color: var(--branco); 
+            border-radius: 20px; 
+            overflow: hidden; 
+            display: flex; 
+            flex-direction: column; 
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .case-card:hover { 
+            transform: translateY(-10px); 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+        }
+
+        .case-mockup { 
+            background-color: #1A1A1A; 
+            height: 200px; 
+            position: relative; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            color: #555; 
+            font-size: 14px; 
+            overflow: hidden; 
+        }
+
+        /* A camada escura que fica invisível por padrão */
+        .case-overlay {
+            position: absolute;
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            background: rgba(13, 5, 36, 0.5); /* Fundo escuro transparente */
+            backdrop-filter: blur(3px); /* Desfoque moderno */
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+            opacity: 0; /* Escondido */
+            transition: opacity 0.3s ease;
+            z-index: 10;
+        }
+
+        /* Quando o mouse passa no card, a camada escura aparece */
+        .case-card:hover .case-overlay {
+            opacity: 1; 
+        }
+
+        /* O visual do botão flutuante */
+        .btn-overlay {
+            color: var(--branco);
+            background: var(--destaque);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 14px;
+            transform: translateY(15px); /* Fica um pouco mais pra baixo */
+            transition: transform 0.4s ease;
+            box-shadow: 0 10px 20px rgba(254, 102, 3, 0.4);
+        }
+
+        /* O botão sobe pro centro quando passa o mouse */
+        .case-card:hover .btn-overlay {
+            transform: translateY(0); 
+        }
+        .case-mockup img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+        .case-info { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; }
+        .case-info h3 { font-size: 20px; color: var(--escuro); margin-bottom: 20px; font-weight: 700; }
+        .case-tags { display: flex; gap: 10px; margin-top: auto; flex-wrap: wrap; }
+        .tag { background-color: var(--cinza-claro); padding: 8px 14px; border-radius: 8px; font-size: 12px; font-weight: 600; color: #333; display: inline-flex; align-items: center; gap: 6px; border: 1px solid #E5E5E5; }
+        .tag svg { width: 14px; height: 14px; color: var(--escuro); }
+
+        .carousel-nav { display: flex; justify-content: center; gap: 15px; margin-top: 10px; }
+        .nav-arrow { width: 45px; height: 45px; border-radius: 50%; background-color: #1A1A1A; color: white; display: flex; justify-content: center; align-items: center; cursor: pointer; border: none; transition: 0.3s; }
+        .nav-arrow:hover { background-color: var(--branco); color: var(--destaque); }
+
+        /* ========================================= */
+        /* CONTATO PREMIUM E WHATSAPP */
+        /* ========================================= */
+        .contato-wrapper { 
+            display: flex; 
+            gap: 50px; 
+            background: var(--cinza-claro); 
+            padding: 60px; 
+            border-radius: 24px; 
+        }
+        
+        .contato-info { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+        .contato-info h2 { margin-bottom: 20px; font-size: 36px; color: var(--escuro); line-height: 1.2; font-weight: 700; }
+        .contato-info p { color: #555; margin-bottom: 30px; font-size: 16px; }
+        .contato-detalhes p { font-weight: 600; color: var(--escuro); margin-bottom: 10px; font-size: 15px; }
+        
+        .contato-form-caixa { flex: 1; background: var(--branco); padding: 40px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .contato-form { display: flex; flex-direction: column; gap: 15px; }
+        .contato-form input, .contato-form textarea { 
+            padding: 15px; border: 2px solid transparent; border-radius: 8px; outline: none; 
+            background: var(--cinza-claro); font-size: 15px; color: var(--escuro); transition: all 0.3s ease; width: 100%;
+        }
+        .contato-form input:focus, .contato-form textarea:focus { background: var(--branco); border-color: var(--primaria); box-shadow: 0 5px 15px rgba(55, 3, 184, 0.1); }
+        .contato-form .btn-destaque { width: 100%; margin-top: 10px; }
+
+        .whatsapp-btn { position: fixed; bottom: 30px; right: 30px; background-color: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.2); z-index: 1000; text-decoration: none; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
+
+        /* ========================================= */
+        /* FOOTER DE RESPEITO */
+        /* ========================================= */
+        .footer-completo { background-color: var(--escuro); color: var(--branco); padding: 80px 0 30px 0; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; margin-bottom: 60px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 60px; }
+        .footer-col .logo { color: var(--branco); }
+        .footer-col p { color: #a09ab0; margin-top: 20px; max-width: 320px; font-size: 14px; }
+        .footer-col h4 { font-size: 18px; margin-bottom: 20px; font-weight: 600; color: var(--branco); }
+        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+        .footer-col ul li a, .social-links a { color: #a09ab0; text-decoration: none; transition: 0.3s; font-size: 15px; display: inline-block; margin-bottom: 10px; }
+        .footer-col ul li a:hover, .social-links a:hover { color: var(--destaque); transform: translateX(5px); }
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; color: #a09ab0; font-size: 14px; flex-wrap: wrap; gap: 20px; }
+        
+        
+        /* MEDIA QUERY PARA CELULAR */
+        @media (max-width: 900px) {
+            .hero-image img { max-width: 280px; }
+            .sobre-caixa { flex-direction: column; padding: 40px; text-align: center; }
+            .sobre-text h2 { font-size: 32px; }
+            .sobre-visual { width: 100%; height: 200px; }
+            .case-card { flex: 0 0 calc(50% - 15px); }
+        }
+
+        @media (max-width: 768px) {
+            .contato-wrapper { flex-direction: column; padding: 30px; gap: 30px; }
+            .contato-info h2 { text-align: center; }
+            .contato-detalhes { text-align: center; }
+            .contato-form-caixa { padding: 25px; }
+            
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; padding-bottom: 40px; margin-bottom: 40px; }
+            .footer-col p { margin: 20px auto; }
+            .footer-col ul li a:hover, .social-links a:hover { transform: translateY(-3px); } /* Hover sobe em vez de ir pro lado no celular */
+            .footer-bottom { flex-direction: column; text-align: center; }
+
+            header .container {
+                flex-direction: column; 
+                gap: 15px;
+                text-align: center;
+            }
+            nav ul {
+                gap: 15px; 
+                justify-content: center;
+                flex-wrap: wrap; 
+            }
+            nav ul li a { font-size: 14px; }
+            .hero .container { flex-direction: column; text-align: center; gap: 30px; }
+            .hero { padding: 60px 0 50px 0; }
+            .hero-image { justify-content: center; width: 100%; }
+            .hero-image img { width: 100%; max-width: 250px; }
+            .hero-text { text-align: center; width: 100%; }
+            .hero h1 { font-size: 32px; display: block; }
+            .typing-wrapper { white-space: normal; animation: none; border: none; display: block; margin: 0 auto; }
+            
+            .sobre { padding: 10px 5% 60px 5%; margin-top: 0; }
+            .portfolio-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+            .portfolio-header h2 { font-size: 32px; }
+            .case-card { flex: 0 0 100%; }
+        }
+
+        /* ========================================= */
+        /* ANIMAÇÕES DE SCROLL (FADE IN UP) */
+        /* ========================================= */
+        .escondido {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, transform; 
+        }
+
+        .aparecer {
+            opacity: 1;
+            transform: translateY(0); 
+        }
+
+        .servico-card:nth-child(1) { transition-delay: 0.1s; }
+        .servico-card:nth-child(2) { transition-delay: 0.2s; }
+        .servico-card:nth-child(3) { transition-delay: 0.3s; }
+    </style>
+</head>
+<body>
+    
+
+    <header>
+        <div class="container">
+            <a href="#inicio" class="logo">movii<span>.</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#sobre">Sobre nós</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#portfolio">Portfólio</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="top-wrapper">
+        <section class="hero" id="inicio">
+            <div class="container">
+                <div class="hero-image">
+                    <img src="LogoInicio.png" alt="Logo da movii no início">
+                </div>
+                <div class="hero-text">
+                    <h1>
+                        <span id="typewriter-text" class="highlight"></span><span class="cursor"></span><br>
+                        para você.
+                    </h1>
+                    <p>Desenvolvimento de sites, sistemas e plataformas com integração e organização digital.</p>
+                    <a href="#contato" class="btn-destaque">Fale com a gente</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="sobre" class="sobre">
+            <div class="sobre-caixa escondido">
+                <div class="sobre-text">
+                    <h2>Crie o futuro do seu negócio</h2>
+                    <p>Liderada por Kaique e Vinícius, a movii transforma desafios complexos em soluções digitais simples e eficientes. Unimos a precisão do desenvolvimento de software com um olhar apurado para design.</p>
+                    <a href="#servicos" class="btn-outline">Ver soluções</a>
+                </div>
+                
+                <div class="sobre-visual modern-gradient-box">
+                    <div class="noise-overlay"></div>
+                    <span class="gradient-text-overlay">movii</span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <section id="servicos">
+        <div class="container">
+            <h2 class="section-title servicos-title escondido">Nossas Especialidades</h2>
+            <div class="marquee-wrapper escondido">
+                <div class="marquee-track">
+                    
+                    <div class="servico-card">
+                        <div class="icon-box">
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                        </div>
+                        <h3>Software sob medida</h3>
+                        <p>Sistemas pensados exclusivamente para a regra de negócio da sua empresa, focados em escalabilidade.</p>
+                    </div>
+
+                    <div class="servico-card">
+                        <div class="icon-box">
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        </div>
+                        <h3>Automação</h3>
+                        <p>Elimine processos manuais repetitivos e aumente a produtividade do seu time com fluxos inteligentes.</p>
+                    </div>
+
+                    <div class="servico-card">
+                        <div class="icon-box">
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                        </div>
+                        <h3>Soluções Digitais</h3>
+                        <p>De Landing Pages de alta conversão a plataformas complexas com design focado no usuário (UX).</p>
+                    </div>
+
+                    <div class="servico-card">
+                        <div class="icon-box">
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
+                        </div>
+                        <h3>Identidade Visual</h3>
+                        <p>Construímos marcas fortes. Do logo à paleta de cores, conectando o seu negócio visualmente com o cliente.</p>
+                    </div>
+
+                    <div class="servico-card">
+                        <div class="icon-box">
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                        </div>
+                        <h3>Consultoria Tech</h3>
+                        <p>Analisamos a estrutura atual da sua empresa e indicamos as melhores ferramentas para vocês crescerem.</p>
+                    </div>
+
+                    <div class="servico-card">
+                        <div class="icon-box">
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                        </div>
+                        <h3>Software sob medida</h3>
+                        <p>Sistemas pensados exclusivamente para a regra de negócio da sua empresa, focados em escalabilidade.</p>
+                    </div>
+
+                    <div class="servico-card">
+                        <div class="icon-box">
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        </div>
+                        <h3>Automação</h3>
+                        <p>Elimine processos manuais repetitivos e aumente a produtividade do seu time com fluxos inteligentes.</p>
+                    </div>
+
+                    <div class="servico-card">
+                        <div class="icon-box">
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                        </div>
+                        <h3>Soluções Digitais</h3>
+                        <p>De Landing Pages de alta conversão a plataformas complexas com design focado no usuário (UX).</p>
+                    </div>
+
+                    <div class="servico-card">
+                        <div class="icon-box">
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
+                        </div>
+                        <h3>Identidade Visual</h3>
+                        <p>Construímos marcas fortes. Do logo à paleta de cores, conectando o seu negócio visualmente com o cliente.</p>
+                    </div>
+
+                    <div class="servico-card">
+                        <div class="icon-box">
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                        </div>
+                        <h3>Consultoria Tech</h3>
+                        <p>Analisamos a estrutura atual da sua empresa e indicamos as melhores ferramentas para vocês crescerem.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <div class="container">
+            <div class="portfolio-header escondido">
+                <h2 class="section-title">Empresas que já deram um start</h2>
+                <a href="https://github.com/movii-solutions" target="_blank" class="btn-escuro" title="Ver repositório de projetos">
+                    Nossos cases
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+            </div>
+        </div>
+
+        <div class="cases-grid escondido" id="casesGrid">
+            
+            <div class="case-card">
+                <div class="case-mockup">
+                    <img src="port.padrao.jpg" alt="Projeto LabSystem">
+                    
+                    <div class="case-overlay">
+                        <span class="btn-overlay">Ver Projeto</span>
+                    </div>
+                    
+                </div>
+                <div class="case-info">
+                    <h3 style="color: var(--primaria);">LabSystem</h3>
+                    <div class="case-tags">
+                        <span class="tag">Saúde</span>
+                        <span class="tag">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                            Gestão Laboratorial
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="container">
+            <div class="carousel-nav">
+                <button class="nav-arrow" id="prevCase" title="Ver projetos anteriores">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                </button>
+                <button class="nav-arrow" id="nextCase" title="Ver próximos projetos">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato">
+        <div class="container">
+            <div class="contato-wrapper escondido">
+                <div class="contato-info">
+                    <h2>Vamos conversar?</h2>
+                    <p>Tem um projeto em mente ou precisa de ajuda para escalar as operações da sua empresa? Manda uma mensagem pra gente!</p>
+                    <div class="contato-detalhes">
+                        <p>Ribeirão Preto, SP</p>
+                        <p>contato@movii.com.br</p>
+                    </div>
+                </div>
+                
+                <div class="contato-form-caixa">
+                    <form class="contato-form" id="contactForm">
+                        <input type="text" placeholder="Seu nome" required>
+                        <input type="email" placeholder="Seu e-mail" required>
+                        <textarea placeholder="Como a movii pode te ajudar?" rows="5" required></textarea>
+                        <button type="submit" class="btn-destaque">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <a href="https://wa.me/5516000000000" target="_blank" class="whatsapp-btn">
+        <img src="LogoZap.png" alt="WhatsApp" style="width: 30px; height: 30px; object-fit: contain;">
+    </a>
+
+    <footer class="footer-completo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#inicio" class="logo">movii<span>.</span></a>
+                    <p>Transformando desafios complexos em soluções digitais simples e eficientes.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="#inicio">Início</a></li>
+                        <li><a href="#sobre">Sobre nós</a></li>
+                        <li><a href="#servicos">Serviços</a></li>
+                        <li><a href="#portfolio">Portfólio</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Redes Sociais</h4>
+                    <div class="social-links">
+                        <ul>
+                            <li><a href="#">Instagram</a></li>
+                            <li><a href="#">LinkedIn</a></li>
+                            <li><a href="https://github.com/movii-solutions" target="_blank">GitHub</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 movii. Todos os direitos reservados.</p>
+                <p>Desenvolvido em Ribeirão Preto.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // =========================================
+        // NAVEGAÇÃO DO PORTFÓLIO (Botões manuais)
+        // =========================================
+        const casesGrid = document.getElementById('casesGrid');
+        const prevBtn = document.getElementById('prevCase');
+        const nextBtn = document.getElementById('nextCase');
+
+        function getScrollAmount() {
+            const card = document.querySelector('.case-card');
+            const cardWidth = card.offsetWidth;
+            const gap = parseInt(window.getComputedStyle(casesGrid).gap);
+            return cardWidth + gap;
+        }
+
+        nextBtn.addEventListener('click', () => {
+            casesGrid.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+        });
+
+        prevBtn.addEventListener('click', () => {
+            casesGrid.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+        });
+
+        // =========================================
+        // FORMULÁRIO PRO WHATSAPP
+        // =========================================
+        const contactForm = document.getElementById('contactForm');
+
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            
+            const inputs = contactForm.querySelectorAll('input, textarea');
+            const nome = inputs[0].value;
+            const email = inputs[1].value;
+            const mensagem = inputs[2].value;
+
+            const textoWhatsApp = `Olá, equipe movii! 🚀\n\nMeu nome é *${nome}*.\nMeu e-mail: ${email}\n\n*Como vocês podem me ajudar:*\n${mensagem}`;
+            
+            const numeroZap = "5516000000000"; 
+            
+            const url = `https://wa.me/${numeroZap}?text=${encodeURIComponent(textoWhatsApp)}`;
+            window.open(url, '_blank');
+            
+            contactForm.reset(); 
+        });
+
+        // =========================================
+        // SCROLL REVEAL (FADE IN UP)
+        // =========================================
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('aparecer');
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, {
+            threshold: 0.1 
+        });
+
+        const elementosEscondidos = document.querySelectorAll('.escondido');
+        elementosEscondidos.forEach((el) => observer.observe(el));
+
+        // =========================================
+        // MÁQUINA DE ESCREVER INTELIGENTE
+        // =========================================
+        const palavras = [
+            "Soluções Digitais", 
+            "Sistemas Web", 
+            "Automação", 
+            "Identidade Visual"
+        ]; 
+        
+        let iPalavra = 0;
+        let iLetra = 0;
+        let apagando = false;
+        const elementoTexto = document.getElementById('typewriter-text');
+
+        function digitar() {
+            const palavraAtual = palavras[iPalavra];
+            
+            if (apagando) {
+                elementoTexto.textContent = palavraAtual.substring(0, iLetra - 1);
+                iLetra--;
+            } else {
+                elementoTexto.textContent = palavraAtual.substring(0, iLetra + 1);
+                iLetra++;
+            }
+
+            let velocidade = apagando ? 50 : 100;
+
+            if (!apagando && iLetra === palavraAtual.length) {
+                velocidade = 2000; 
+                apagando = true;
+            } else if (apagando && iLetra === 0) {
+                apagando = false;
+                iPalavra = (iPalavra + 1) % palavras.length; 
+                velocidade = 500; 
+            }
+
+            setTimeout(digitar, velocidade);
+        }
+
+        setTimeout(digitar, 1000);
+
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            // Se o scroll passar de 50px, ele adiciona a classe 'scrolled', se voltar pro topo, remove.
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        const slider = document.querySelector('.marquee-track');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+        let currentTranslate = 0;
+        let animationId;
+        const speed = 1; // Ajuste a velocidade da rolagem automática aqui
+
+        // Função para o movimento automático infinito
+        function move() {
+            if (!isDown) {
+                currentTranslate -= speed;
+                
+                // Verifica se chegou na metade (onde os cards se repetem) e reseta
+                // Isso cria o efeito infinito sem pulos
+                if (Math.abs(currentTranslate) >= slider.offsetWidth / 2) {
+                    currentTranslate = 0;
+                }
+                slider.style.transform = `translateX(${currentTranslate}px)`;
+            }
+            animationId = requestAnimationFrame(move);
+        }
+
+        // Inicia a animação
+        move();
+
+        // Eventos de Mouse (Arraste)
+        slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = currentTranslate;
+            slider.style.cursor = 'grabbing';
+        });
+
+        slider.addEventListener('mouseleave', () => {
+            isDown = false;
+            slider.style.cursor = 'grab';
+        });
+
+        slider.addEventListener('mouseup', () => {
+            isDown = false;
+            slider.style.cursor = 'grab';
+        });
+
+        slider.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX); 
+            
+            currentTranslate = scrollLeft + walk;
+            
+            // Mantém o limite para não "vazar" o carrossel durante o arraste
+            if (currentTranslate > 0) currentTranslate = -slider.offsetWidth / 2;
+            if (Math.abs(currentTranslate) >= slider.offsetWidth / 2) currentTranslate = 0;
+            
+            slider.style.transform = `translateX(${currentTranslate}px)`;
+        });
+
+        // Garante que clicar no Início ou na Logo leve ao topo absoluto (0,0)
+        document.querySelectorAll('a[href="#inicio"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+                // Atualiza a URL sem recarregar a página (opcional)
+                history.pushState(null, null, '#inicio');
+            });
+        });
+
+    </script>
+
+</body>
+</html>
