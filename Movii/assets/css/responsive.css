@@ -1,0 +1,49 @@
+/* =========================================
+           RESPONSIVO
+        ========================================= */
+        @media (max-width: 992px) {
+            .bento-grid { grid-template-columns: 1fr; padding: 0 20px; }
+            .item-1, .item-7 { grid-column: span 1; }
+            .section-bento { padding: 60px 0; }
+            .projetos-grid { grid-template-columns: 1fr 1fr; }
+            .processo-steps { grid-template-columns: 1fr; gap: 40px; }
+            .processo-steps::before { display: none; }
+            .dashboard-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 900px) {
+            .sobre-caixa { flex-direction: column; padding: 40px; text-align: center; }
+            .sobre-text h2 { font-size: 32px; }
+            .sobre-visual { width: 100%; }
+            .founders-card { max-width: 400px; margin: 0 auto; }
+        }
+
+        @media (max-width: 768px) {
+            .contato-wrapper { flex-direction: column; padding: 30px; gap: 30px; }
+            .contato-info h2 { text-align: center; }
+            .contato-detalhes { text-align: center; }
+            .contato-form-caixa { padding: 25px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; padding-bottom: 40px; margin-bottom: 40px; }
+            .footer-col p { margin: 20px auto; }
+            .footer-col ul li a:hover, .social-links a:hover { transform: translateY(-3px); }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            header .container { flex-direction: column; gap: 15px; text-align: center; }
+            nav ul { gap: 15px; justify-content: center; flex-wrap: wrap; }
+            nav ul li a { font-size: 14px; }
+            .hero .container { flex-direction: column; gap: 30px; }
+            .hero { padding: 50px 0 80px; }
+            .hero-text { text-align: center; width: 100%; }
+            .hero h1 { font-size: 32px; display: block; }
+            .hero p { margin-left: auto; margin-right: auto; }
+            .hero-dashboard { width: 100%; }
+            .dashboard-shell { padding: 18px; }
+            .dashboard-title { font-size: 24px; }
+            .dashboard-chart__row { grid-template-columns: 82px 1fr; gap: 10px; }
+            .dashboard-metric__value { font-size: 28px; }
+            .dashboard-panel { padding: 18px; }
+            .middle-wrapper { padding-top: 40px; }
+            .sobre { margin-top: 0; padding: 0 5%; }
+            .projetos-grid { grid-template-columns: 1fr; }
+            .projetos-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+            .impact-number { font-size: 36px; }
+        }
