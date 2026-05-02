@@ -1,105 +1,240 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Termos de Uso | MovCode</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Termos de Uso - MovCode</title>
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #0f0f0f;
-            color: #ccc;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
+        /* =========================================
+           VARIÁVEIS E ESTILOS EXCLUSIVOS - TERMOS
+        ========================================= */
+        :root {
+            --primaria: #3703B8;
+            --destaque: #FE6603;
+            --branco: #FFFFFF;
+            --escuro: #0D0524;
+            --cinza-claro: #F4F5F7;
         }
-        .container {
+
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Poppins', sans-serif; 
+        }
+
+        body { 
+            color: var(--escuro); 
+            background-color: #fcfcfc; 
+            line-height: 1.7; 
+            overflow-x: hidden;
+            padding: 60px 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container-termo {
+            width: 100%;
             max-width: 800px;
-            margin: 50px auto;
-            padding: 40px;
-            background: #1a1a1a;
-            border-radius: 12px;
-            border: 1px solid #333;
+            background: var(--branco);
+            padding: 50px;
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.03);
         }
+
+        header {
+            border-bottom: 2px solid var(--cinza-claro);
+            padding-bottom: 24px;
+            margin-bottom: 40px;
+        }
+
         h1 {
-            color: #fff;
-            font-size: 2rem;
+            color: var(--escuro);
+            font-size: 32px;
+            margin-bottom: 8px;
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        .version {
+            color: #615a7a;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+
+        section {
+            margin-bottom: 35px;
+        }
+
+        h2 {
+            color: var(--primaria);
+            font-size: 22px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 22px;
+            background-color: var(--destaque);
+            border-radius: 4px;
+        }
+
+        p, li {
+            font-size: 15px;
+            margin-bottom: 16px;
+            color: #413b58;
+        }
+
+        ul {
+            padding-left: 24px;
+            margin-bottom: 24px;
+        }
+
+        li {
             margin-bottom: 10px;
         }
-        .logo-box {
-            margin-bottom: 30px;
-            font-size: 1.5rem;
-            font-weight: bold;
+
+        strong {
+            color: var(--escuro);
+            font-weight: 600;
         }
-        h2 {
-            color: #ff8c00; /* Laranja para diferenciar sutilmente da privacidade */
-            font-size: 1.3rem;
-            margin-top: 30px;
-        }
-        p, li {
-            margin-bottom: 15px;
-        }
-        ul {
-            padding-left: 20px;
-        }
-        .back-link {
-            display: inline-block;
-            margin-top: 40px;
-            color: #8257e5;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .back-link:hover {
-            text-decoration: underline;
-        }
-        footer {
+
+        .footer {
+            margin-top: 60px;
+            font-size: 13px;
+            color: #837da1;
             text-align: center;
-            margin-top: 50px;
-            font-size: 0.8rem;
-            color: #666;
-            padding-bottom: 30px;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            padding-top: 30px;
+            font-weight: 500;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 15px; }
+            .container-termo { padding: 30px 20px; }
+            h1 { font-size: 26px; }
+            h2 { font-size: 20px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="logo-box">
-            <span style="color: #8257e5;">Mov</span><span style="color: #ff8c00;">Code.</span>
+    <div class="container-termo">
+        
+        <button id="btn-voltar-home" class="btn-outline">
+            &larr; Voltar para a Home
+        </button>
+        
+        <header>
+            <h1>Termos de Uso</h1>
+            <div class="version">MovCode &bull; Vigente a partir de 05.01.2026</div>
+        </header>
+
+        <section>
+            <h2>1. Identificação</h2>
+            <p>Estes Termos de Uso regulam a prestação de serviços da <strong>MovCode</strong> com canal oficial em contato@movii.com.br.</p>
+        </section>
+
+        <section>
+            <h2>2. Objeto do contrato</h2>
+            <p>A MovCode é uma agência de soluções digitais. Nossos serviços incluem, mas não se limitam a:</p>
+            <ul>
+                <li>Desenvolvimento de sistemas sob medida e aplicações web.</li>
+                <li>Criação de sites corporativos, landing pages e e-commerces.</li>
+                <li>Serviços de design e identidade visual.</li>
+                <li>Hospedagem, manutenção contínua e suporte técnico.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>3. Modelos de Contratação e Preços</h2>
+            <p>Trabalhamos com projetos de escopo fechado ou assinaturas mensais (recorrência):</p>
+            <ul>
+                <li><strong>Projetos de Desenvolvimento:</strong> O valor, o escopo e os prazos são definidos e detalhados em uma proposta comercial aprovada previamente por você.</li>
+                <li><strong>Mensalidade de Manutenção/Hospedagem:</strong> Para sistemas e sites que rodam na nossa infraestrutura, cobramos um valor recorrente que garante o servidor no ar, backups de segurança e suporte técnico básico.</li>
+            </ul>
+            <p>Qualquer alteração de preço em serviços recorrentes será comunicada com 30 dias de antecedência.</p>
+        </section>
+
+        <section>
+            <h2>4. Pagamento e cobrança</h2>
+            <ul>
+                <li><strong>Formas de pagamento:</strong> Aceitamos PIX, Boleto bancário ou Transferência.</li>
+                <li><strong>Ciclo de recorrência:</strong> Para manutenções e hospedagem, a cobrança é mensal, cobrada no mesmo dia da contratação inicial.</li>
+                <li><strong>Atrasos em Projetos:</strong> O não pagamento de parcelas atreladas às entregas de um projeto em andamento pausa o desenvolvimento até a regularização.</li>
+                <li><strong>Suspensão de sistemas:</strong> Em caso de atraso superior a 5 dias no pagamento da recorrência, o seu sistema ou site poderá entrar em modo de leitura ou ser temporariamente suspenso.</li>
+                <li><strong>Cancelamento por inadimplência:</strong> Após 15 dias sem pagamento, os serviços recorrentes são cancelados e os arquivos/dados hospedados entram na fila de exclusão.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>5. Prazos e Entregas</h2>
+            <p>O desenvolvimento do seu projeto é um trabalho em equipe. Você se compromete a enviar os materiais necessários (textos, imagens, senhas, etc.) nos prazos combinados. Atrasos da sua parte no envio de materiais ou na aprovação de etapas pausarão automaticamente os prazos de entrega do nosso lado.</p>
+        </section>
+
+        <section>
+            <h2>6. Obrigações do Cliente</h2>
+            <ul>
+                <li>Utilizar os sistemas desenvolvidos exclusivamente para atividades lícitas.</li>
+                <li>Não compartilhar credenciais de acesso administrativo com pessoas não autorizadas.</li>
+                <li>Garantir que possui os direitos de uso (ou direitos autorais) de qualquer imagem, vídeo ou texto fornecido para inserção nos sites e sistemas.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>7. Limitação de responsabilidade</h2>
+            <ul>
+                <li>O software é fornecido buscando sempre a melhor performance, mas não garantimos ausência total de bugs.</li>
+                <li>Nos comprometemos a corrigir falhas técnicas reportadas que estejam dentro do escopo do projeto ou do seu plano de manutenção.</li>
+                <li>Não nos responsabilizamos por quedas de servidores de data centers externos ou instabilidades em integrações de terceiros (ex: APIs de pagamento, indisponibilidade do WhatsApp, etc).</li>
+                <li>Não nos responsabilizamos por prejuízos indiretos, lucros cessantes ou perda de dados decorrente de mau uso do sistema por parte dos seus usuários.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>8. Propriedade intelectual</h2>
+            <ul>
+                <li><strong>Código e Estrutura:</strong> Os códigos-fonte base, frameworks e componentes reutilizáveis criados pela Movii permanecem como nossa propriedade intelectual, sendo licenciados para o funcionamento do seu projeto.</li>
+                <li><strong>Seus Dados e Marca:</strong> O banco de dados do seu sistema, os cadastros de clientes, a sua marca e o conteúdo gerado por você são de sua propriedade exclusiva. Não utilizamos seus dados confidenciais para nenhum outro fim além de manter o seu sistema rodando.</li>
+            </ul>
+            <p>Projetos de design gráfico finalizados e quitados (como identidades visuais) têm seus direitos patrimoniais integralmente transferidos para você.</p>
+        </section>
+
+        <section>
+            <h2>9. Cancelamento (Serviços Recorrentes)</h2>
+            <ul>
+                <li>Você pode cancelar a manutenção ou hospedagem a qualquer momento, mediante aviso prévio de 30 dias.</li>
+                <li>Após o cancelamento, os dados do seu sistema/site ficarão disponíveis por 30 dias para exportação ou migração. Passado esse prazo, os arquivos em nossos servidores poderão ser excluídos definitivamente.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>10. Foro eleito</h2>
+            <p>Fica eleito o foro da Comarca de Ribeirão Preto/SP para dirimir qualquer questão oriunda destes Termos, renunciando as partes a qualquer outro por mais privilegiado que seja.</p>
+        </section>
+
+        <div class="footer">
+            &copy; <span id="year">2026</span> MovCode. Todos os direitos reservados.
         </div>
-
-        <h1>Termos de Uso</h1>
-        <p>Ao acessar ao site <strong>MovCode</strong>, você concorda em cumprir estes termos de serviço, todas as leis e regulamentos aplicáveis ​​e concorda que é responsável pelo cumprimento de todas as leis locais aplicáveis.</p>
-
-        <h2>1. Licença de Uso</h2>
-        <p>É concedida permissão para baixar temporariamente uma cópia dos materiais (informações ou software) no site MovCode, apenas para visualização transitória pessoal e não comercial.</p>
-        <p>Esta é a concessão de uma licença, não uma transferência de título e, sob esta licença, você não pode:</p>
-        <ul>
-            <li>Modificar ou copiar os materiais;</li>
-            <li>Usar os materiais para qualquer finalidade comercial ou para exibição pública;</li>
-            <li>Tentar descompilar ou fazer engenharia reversa de qualquer software contido no site;</li>
-            <li>Remover quaisquer direitos autorais ou outras notações de propriedade dos materiais.</li>
-        </ul>
-
-        <h2>2. Isenção de Responsabilidade</h2>
-        <p>Os materiais no site da MovCode são fornecidos 'como estão'. A MovCode não oferece garantias, expressas ou implícitas, e, por este meio, isenta e nega todas as outras garantias, incluindo, sem limitação, garantias implícitas ou condições de comercialização ou adequação a um fim específico.</p>
-
-        <h2>3. Limitações</h2>
-        <p>Em nenhum caso a MovCode ou seus fornecedores serão responsáveis ​​por quaisquer danos decorrentes do uso ou da incapacidade de usar os materiais em nosso site, mesmo que tenhamos sido notificados oralmente ou por escrito da possibilidade de tais danos.</p>
-
-        <h2>4. Precisão dos Materiais</h2>
-        <p>Os materiais exibidos no site podem incluir erros técnicos, tipográficos ou fotográficos. A MovCode não garante que qualquer material em seu site seja preciso, completo ou atual, podendo fazer alterações a qualquer momento sem aviso prévio.</p>
-
-        <h2>5. Links Externos</h2>
-        <p>A MovCode não analisou todos os locais vinculados ao seu site e não é responsável pelo conteúdo de nenhum site vinculado. A inclusão de qualquer link não implica endosso por parte da MovCode.</p>
-
-        <a href="index.html" class="back-link">← Voltar para o site</a>
+        
     </div>
 
-    <footer>
-        &copy; 2026 MovCode — Todos os direitos reservados.
-    </footer>
-
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const yearSpan = document.getElementById('year');
+            if (yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            };
+        });
+    </script>
 </body>
 </html>
