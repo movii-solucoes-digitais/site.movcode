@@ -1090,7 +1090,10 @@ h2.section-title { color: var(--escuro); font-size: 36px; margin-bottom: 50px; }
     height: 100%;
     display: block;
     object-fit: cover;
+    opacity: 1;
+    transition: opacity 0.35s ease;
 }
+.project-modal__gallery img.is-changing { opacity: 0; }
 .project-modal__content {
     padding: 18px 12px 18px 0;
 }
@@ -1130,7 +1133,7 @@ h2.section-title { color: var(--escuro); font-size: 36px; margin-bottom: 50px; }
     font-weight: 600;
 }
 .project-modal__thumbs {
-    display: grid;
+    display: none;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     margin-top: 24px;
@@ -1489,7 +1492,7 @@ h2.section-title { color: var(--escuro); font-size: 36px; margin-bottom: 50px; }
         border-radius: 16px;
     }
     .project-modal__close { top: 10px; right: 10px; }
-    .project-modal__gallery { min-height: 220px; }
+    .project-modal__gallery { min-height: 0; height: 260px; }
     .project-modal__dialog h3 { font-size: clamp(24px, 8vw, 32px); }
     .project-modal__dialog p { font-size: 14px; }
     .project-modal__content { padding: 0 4px 6px; }
@@ -1569,7 +1572,7 @@ h2.section-title { color: var(--escuro); font-size: 36px; margin-bottom: 50px; }
     .projeto-body,
     .projeto-footer { padding-left: 16px; padding-right: 16px; }
     .project-modal { padding: 10px; }
-    .project-modal__gallery { min-height: 180px; }
+    .project-modal__gallery { min-height: 0; height: 220px; }
     .project-modal__thumbs { gap: 8px; }
     .project-modal__thumbs button { height: 52px; }
     .project-modal__tags span { padding: 6px 10px; }
